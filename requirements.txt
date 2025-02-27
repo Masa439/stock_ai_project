@@ -1,0 +1,9 @@
+yfinance
+pandas
+numpy
+matplotlib
+plotly
+scikit-learn
+tensorflow  # or pytorch
+gym
+xgboost
