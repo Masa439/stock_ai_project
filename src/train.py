@@ -28,14 +28,14 @@ df = pd.concat(df_list, ignore_index=True)
 df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by=['Date', 'Ticker'])
 
-# **📌 各銘柄のデータを均一化**
+# ** 各銘柄のデータを均一化**
 median_size = int(df['Ticker'].value_counts().median())
 df_balanced = df.groupby('Ticker', group_keys=False).apply(lambda x: x.sample(n=min(len(x), median_size), replace=False)).reset_index(drop=True)
 
 # 特徴量とターゲットを作成
 df_balanced['Target'] = (df_balanced.groupby("Ticker")['Close'].shift(-1) > df_balanced['Close']).astype(int)
 
-# **📌 `Ticker` の影響を下げるために数値エンコーディング**
+# ** `Ticker` の影響を下げるために数値エンコーディング**
 le = LabelEncoder()
 df_balanced['Ticker_Label'] = le.fit_transform(df_balanced['Ticker'])
 
@@ -73,8 +73,8 @@ model.fit(X_train, y_train)
 
 # 予測と評価
 y_pred = model.predict(X_test)
-print(f"✅ Accuracy: {accuracy_score(y_test, y_pred):.4f}")
-print("📊 Classification Report:")
+print(f" Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+print(" Classification Report:")
 print(classification_report(y_test, y_pred, zero_division=1))
 
 # 特徴量の重要度をプロット

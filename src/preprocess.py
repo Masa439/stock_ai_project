@@ -12,7 +12,7 @@ def preprocess_stock_data(file_path):
 
         # "Date" カラムがあるか確認
         if "Date" not in df.columns:
-            print(f"⚠️ {file_path} に 'Date' カラムがありません。")
+            print(f"{file_path} に 'Date' カラムがありません。")
             return
 
         # "Date" を日付型に変換（無効な日付はNaTに変換）
@@ -53,17 +53,17 @@ def preprocess_stock_data(file_path):
         save_path = file_path.replace(".csv", "_processed.csv")
         df.to_csv(save_path)
 
-        print(f"✅ {os.path.basename(file_path)} の前処理データを保存しました: {save_path}")
+        print(f"{os.path.basename(file_path)} の前処理データを保存しました: {save_path}")
 
     except Exception as e:
-        print(f"❌ {file_path} の処理中にエラーが発生しました: {e}")
+        print(f"{file_path} の処理中にエラーが発生しました: {e}")
 
 if __name__ == "__main__":
     # 修正したパス
     data_dir = "C:/Users/Nedet/Desktop/project_root/env/data"
     csv_files = [f for f in os.listdir(data_dir) if f.endswith(".csv") and not f.endswith("_processed.csv")]
 
-    print(f"📂 {len(csv_files)} 件のデータを前処理します...")
+    print(f"{len(csv_files)} 件のデータを前処理します...")
 
     for csv_file in csv_files:
         preprocess_stock_data(os.path.join(data_dir, csv_file))
